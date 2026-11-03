@@ -1,0 +1,579 @@
+
+<html>
+<head>
+<script>
+let can = ["___", "___", "___"];
+let doai = ["_ _", "___", "___"];
+let ly = ["___", "_ _", "___"];
+let chan = ["_ _", "_ _", "___"];
+let ton = ["___", "___", "_ _"];
+let kham = ["_ _", "___", "_ _"];
+let cans = ["___", "_ _", "_ _"];
+let khon = ["_ _", "_ _", "_ _"];
+
+let batquaiAmDuong = [
+    { id: 1, name: "_________" },
+   { id: 2, name:  "_ _______" },
+   { id: 3, name:  "____ ____" },
+   { id: 4, name:  "_ __ ____" },
+   { id: 5, name:  "_______ _" },
+   { id: 6, name:  "_ _____ _" },
+   { id: 7, name:  "____ __ _" },
+   { id: 8, name:  "_ __ __ _" }
+];
+
+let canchi = [
+    { id: "Tý", name: 1 },
+   { id: "Sửu", name: 2 },
+   { id: "Dần", name: 3 },
+   { id: "Mão", name: 4 },
+   { id: "Thìn", name: 5 },
+   { id: "Tỵ", name: 6 },
+   { id: "Ngọ", name: 7 },
+   { id: "Mùi", name: 8 },
+   { id: "Thân", name: 9 },
+   { id: "Dậu", name: 10 },
+   { id: "Tuất", name: 11 },
+   { id: "Hợi", name: 12 }
+];
+let canchigio = [
+    { id: 23, name: 1 },
+	 { id: 0, name: 1 },
+	  { id: 1, name: 2 },
+	   { id: 2, name: 2 },
+	    { id: 3, name: 3 },
+		 { id: 4, name: 3 },
+		  { id: 5, name: 4 },
+		   { id: 6, name: 4 },
+		    { id: 7, name: 5 },
+			 { id: 8, name: 5 },
+			  { id: 9, name: 6 },
+			   { id: 10, name: 6 },
+			    { id: 11, name: 7 },
+				 { id: 12, name: 7 },
+				  { id: 13, name: 8 },
+				   { id: 14, name: 8 },
+				    { id: 15, name: 9 },
+					 { id: 16, name: 9 },
+					  { id: 17, name: 10 },
+					   { id: 18, name: 10  },
+					    { id: 19, name: 11 },
+						 { id: 20, name: 11 },
+						  { id: 21, name: 12 },
+						   { id: 22, name: 12 }
+];
+
+let batquai = [
+    { id: 1, name: "Càn" },
+   { id: 2, name:  "Đoài" },
+   { id: 3, name:  "Ly" },
+   { id: 4, name:  "Chấn" },
+   { id: 5, name:  "Tốn" },
+   { id: 6, name:  "Khảm" },
+   { id: 7, name:  "Cấn" },
+   { id: 8, name:  "Khôn" }
+];
+
+let nguhanhbatquai = [
+    { id: "Càn", name: "Kim" },
+   { id: "Đoài", name:  "Kim" },
+   { id: "Ly", name:  "Hoả" },
+   { id: "Chấn", name:  "Mộc" },
+   { id: "Tốn", name:  "Mộc" },
+   { id: "Khảm", name:  "Thuỷ" },
+   { id: "Cấn", name:  "Thổ" },
+   { id: "Khôn", name:  "Thổ" }
+];
+
+let queLy = [
+    { id: 1, name: "Thiên" },
+   { id: 2, name:  "Trạch" },
+   { id: 3, name:  "Hoả" },
+   { id: 4, name:  "Lôi" },
+   { id: 5, name:  "Phong" },
+   { id: 6, name:  "Thuỷ" },
+   { id: 7, name:  "Sơn" },
+   { id: 8, name:  "Địa" }
+];
+
+let thuongQuai = 8;
+let haQuai = 3;
+let haoDong = 1;
+
+let ngayAm = 1;
+let thangAm = 1;
+let namAm = 1;
+let namAmCanChi = "";
+let lyGio = 1;
+
+document.addEventListener("DOMContentLoaded",async  function () {
+   
+    await  getNgayAmLich();
+	
+   canchi.forEach(item => {
+    	 if(namAmCanChi.includes(item.id) ) {
+			namAm = item.name;
+			console.log("Năm âm lý:",ngayAm + "-" + thangAm + "-" + namAm + "-" + namAmCanChi);
+			
+		 }
+
+	});
+	<!-- tinh thuongQuai -->
+	thuongQuai = (ngayAm + thangAm + namAm) % 8;
+	if(thuongQuai == 0) { thuongQuai = 8;}
+   
+   <!-- tinh haQuai -->
+   let gio = new Date().getHours();
+    canchigio.forEach(item => {
+    	 if(gio == item.id) {
+			lyGio = item.name;
+			console.log("Giờ lý:",ngayAm + "-" + thangAm + "-" + namAm + "-" + namAmCanChi + "-" + lyGio);
+			
+		 }
+
+	});
+   haQuai = (ngayAm + thangAm + namAm + lyGio)%8;
+   if(haQuai == 0) { haQuai = 8;}
+   
+   console.log("Thượng Quái : ",thuongQuai);
+   console.log("Hạ Quái :",haQuai);
+   <!-- tinh hadong -->
+   haoDong = (ngayAm + thangAm + namAm + lyGio)%6;
+   if(haoDong == 0) { haoDong = 6;}
+   document.getElementById("haodong").innerText  = "Động Hào " + haoDong;
+   console.log("Hào Động :",haoDong);
+   
+   drawQueChinh();
+   
+   if(haoDong == 1 || haoDong == 2  || haoDong == 3) {
+		document.getElementById("6").innerText = document.getElementById("6").innerText + " Thể"
+		document.getElementById("3").innerText = document.getElementById("3").innerText + " Dụng"
+   } else {
+		document.getElementById("6").innerText = document.getElementById("6").innerText + " Dụng"
+		document.getElementById("3").innerText = document.getElementById("3").innerText + " Thể"
+   }
+   
+   let canchigioValue = canchi.find(item => item.name == lyGio); 
+   document.getElementById("amlich").innerText  = document.getElementById("amlich").innerText  + " giờ " + canchigioValue.id + " " + new Date().getHours() + " Giờ";
+   
+	
+});
+
+
+function drawQueBien() {
+	document.getElementById("666").innerText = document.getElementById("6").innerText;
+    document.getElementById("555").innerText = document.getElementById("5").innerText;
+    document.getElementById("444").innerText = document.getElementById("4").innerText;
+    
+    document.getElementById("333").innerText = document.getElementById("3").innerText;
+    document.getElementById("222").innerText = document.getElementById("2").innerText;
+    document.getElementById("111").innerText = document.getElementById("1").innerText;
+    
+    if(haoDong == 1) {
+    	if(document.getElementById("111").innerText == "___") {
+        	document.getElementById("111").innerText = "_ _";
+        } else {
+        	document.getElementById("111").innerText = "___";
+        }
+		document.getElementById("111").style.color = "red";
+    }
+    if(haoDong == 2) {
+    	if(document.getElementById("222").innerText == "___") {
+        	document.getElementById("222").innerText = "_ _";
+        } else {
+        	document.getElementById("222").innerText = "___";
+        }
+		document.getElementById("222").style.color = "red";
+    }
+    if(haoDong == 3) {
+    	if(document.getElementById("333").innerText == "___") {
+        	document.getElementById("333").innerText = "_ _";
+        } else {
+        	document.getElementById("333").innerText = "___";
+        }
+		document.getElementById("333").style.color = "red";
+    }
+    if(haoDong == 4) {
+    	if(document.getElementById("444").innerText == "___") {
+        	document.getElementById("444").innerText = "_ _";
+        } else {
+        	document.getElementById("444").innerText = "___";
+        }
+		document.getElementById("444").style.color = "red";
+    }
+    if(haoDong == 5) {
+    	if(document.getElementById("555").innerText == "___") {
+        	document.getElementById("555").innerText = "_ _";
+        } else {
+        	document.getElementById("555").innerText = "___";
+        }
+		document.getElementById("555").style.color = "red";
+    }
+    if(haoDong == 6) {
+    	if(document.getElementById("666").innerText == "___") {
+        	document.getElementById("666").innerText = "_ _";
+        } else {
+        	document.getElementById("666").innerText = "___";
+        }
+		document.getElementById("666").style.color = "red";
+    }
+	
+	
+	let ghepamduongTren = document.getElementById("666").innerText + document.getElementById("555").innerText + document.getElementById("444").innerText;
+	let ghepamduongDươi = document.getElementById("333").innerText + document.getElementById("222").innerText + document.getElementById("111").innerText;
+	
+	let quaiThuong = batquaiAmDuong.find(item => item.name == ghepamduongTren);
+	let quaiHa = batquaiAmDuong.find(item => item.name == ghepamduongDươi);
+	
+	<!-- nguhanhho -->
+	let batquaiThuong = batquai.find(item => item.id == quaiThuong.id);
+	let batquaiHa = batquai.find(item => item.id == quaiHa.id);
+	
+	let queLyThuong = queLy.find(item => item.id == quaiThuong.id);
+	let queLyHa = queLy.find(item => item.id == quaiHa.id);
+	
+	 let nguhanhThuong = nguhanhbatquai.find(item => item.id == batquaiThuong.name); 
+	 let nguhanhHa = nguhanhbatquai.find(item => item.id == batquaiHa.name);
+	
+	document.getElementById("batquaibien").innerText = batquaiThuong.name + " - " + batquaiHa.name;
+	
+	document.getElementById("quelybien").innerText = queLyThuong.name + " - " + queLyHa.name;
+	document.getElementById("nguhanhbien").innerText = nguhanhThuong.name + " - " + nguhanhHa.name;
+    
+}
+
+function drawQueHo() {
+	debugger
+	document.getElementById("66").innerText = document.getElementById("3").innerText;
+    document.getElementById("55").innerText = document.getElementById("4").innerText;
+    document.getElementById("44").innerText = document.getElementById("5").innerText;
+    
+    document.getElementById("33").innerText = document.getElementById("2").innerText;
+    document.getElementById("22").innerText = document.getElementById("3").innerText;
+    document.getElementById("11").innerText = document.getElementById("4").innerText;
+	
+	
+	let ghepamduongTren = document.getElementById("66").innerText + document.getElementById("55").innerText + document.getElementById("44").innerText;
+	let ghepamduongDươi = document.getElementById("33").innerText + document.getElementById("22").innerText + document.getElementById("11").innerText;
+	
+	let quaiThuong = batquaiAmDuong.find(item => item.name == ghepamduongTren);
+	let quaiHa = batquaiAmDuong.find(item => item.name == ghepamduongDươi);
+	
+	<!-- nguhanhho -->
+	let batquaiThuong = batquai.find(item => item.id == quaiThuong.id);
+	let batquaiHa = batquai.find(item => item.id == quaiHa.id);
+	
+	let queLyThuong = queLy.find(item => item.id == quaiThuong.id);
+	let queLyHa = queLy.find(item => item.id == quaiHa.id);
+	
+	 let nguhanhThuong = nguhanhbatquai.find(item => item.id == batquaiThuong.name); 
+	 let nguhanhHa = nguhanhbatquai.find(item => item.id == batquaiHa.name);
+	
+	document.getElementById("batquaiho").innerText = batquaiThuong.name + " - " + batquaiHa.name;
+	
+	document.getElementById("quelyho").innerText = queLyThuong.name + " - " + queLyHa.name;
+	document.getElementById("nguhanhho").innerText = nguhanhThuong.name + " - " + nguhanhHa.name;
+}
+
+function drawQueChinh() {
+	let hao = 6;
+    let list;
+    if(thuongQuai == 1) {
+    	list = can;
+    }
+    if(thuongQuai == 2) {
+    	list = doai;
+    }
+    if(thuongQuai == 3) {
+    	list = ly;
+    }
+    if(thuongQuai == 4) {
+    	list = chan;
+    }
+    if(thuongQuai == 5) {
+    	list = ton;
+    }
+    if(thuongQuai == 6) {
+    	list = kham;
+    }
+    if(thuongQuai == 7) {
+    	list = cans;
+    }
+    if(thuongQuai == 8) {
+    	list = khon;
+    }
+	list.forEach(item => {
+    	if(hao == 6) {
+        	document.getElementById("6").innerText = item;
+        }
+        if(hao == 5) {
+        	document.getElementById("5").innerText = item;
+        }
+        if(hao == 4) {
+        	document.getElementById("4").innerText = item;
+        }
+        hao = hao -1;	
+
+	});
+    
+    
+    hao = 3;
+    if(haQuai == 1) {
+    	list = can;
+    }
+    if(haQuai == 2) {
+    	list = doai;
+    }
+    if(haQuai == 3) {
+    	list = ly;
+    }
+    if(haQuai == 4) {
+    	list = chan;
+    }
+    if(haQuai == 5) {
+    	list = ton;
+    }
+    if(haQuai == 6) {
+    	list = kham;
+    }
+    if(haQuai == 7) {
+    	list = cans;
+    }
+    if(haQuai == 8) {
+    	list = khon;
+    }
+	list.forEach(item => {
+    	if(hao == 3) {
+        	document.getElementById("3").innerText = item;
+            
+        }
+        if(hao == 2) {
+        	document.getElementById("2").innerText = item;
+        }
+        if(hao == 1) {
+        	document.getElementById("1").innerText = item;
+        }
+        hao = hao -1;	
+
+	});
+	
+	let ghepamduongTren = document.getElementById("6").innerText + document.getElementById("5").innerText + document.getElementById("4").innerText;
+	let ghepamduongDươi = document.getElementById("3").innerText + document.getElementById("2").innerText + document.getElementById("1").innerText;
+	
+	let quaiThuong = batquaiAmDuong.find(item => item.name == ghepamduongTren);
+	let quaiHa = batquaiAmDuong.find(item => item.name == ghepamduongDươi);
+	
+	<!-- nguhanhho -->
+	let batquaiThuong = batquai.find(item => item.id == quaiThuong.id);
+	let batquaiHa = batquai.find(item => item.id == quaiHa.id);
+	
+	let queLyThuong = queLy.find(item => item.id == quaiThuong.id);
+	let queLyHa = queLy.find(item => item.id == quaiHa.id);
+	
+	 let nguhanhThuong = nguhanhbatquai.find(item => item.id == batquaiThuong.name); 
+	 let nguhanhHa = nguhanhbatquai.find(item => item.id == batquaiHa.name);
+	
+	document.getElementById("batquaichinh").innerText = batquaiThuong.name + " - " + batquaiHa.name;
+	
+	document.getElementById("quelychinh").innerText = queLyThuong.name + " - " + queLyHa.name;
+	document.getElementById("nguhanhchinh").innerText = nguhanhThuong.name + " - " + nguhanhHa.name;
+	
+	
+    drawQueHo();
+    drawQueBien();
+}
+
+ function getCurrentDate() {
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+}
+
+async function getNgayAmLich() {
+	date = getCurrentDate();
+   await fetch(`https://liu.com.vn/api/ngay/${date}`, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("HTTP Error: " + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Dữ liệu API:", data);
+		const today = new Date();
+
+		const year = today.getFullYear();
+		const month = String(today.getMonth() + 1).padStart(2, '0');
+		const day = String(today.getDate()).padStart(2, '0');
+		document.getElementById("duonglich").innerText = "Dương Lịch: " + `${day}/${month}/${year}`;
+		document.getElementById("amlich").innerText = "Âm Lịch: " + data.am_lich.ngay + "/" + data.am_lich.thang + "/" + data.am_lich.nam  ;
+		ngayAm = data.am_lich.ngay;
+		thangAm = data.am_lich.thang;
+		namAmCanChi = data.can_chi.nam;
+        // Lấy thông tin
+        console.log("Ngày âm:", data.ngay_am);
+        console.log("Can chi ngày:", data.can_chi.ngay + " - " + namAmCanChi);
+        console.log("Đánh giá:", data.danh_gia);
+    })
+    .catch(error => {
+        console.error("Lỗi gọi API:", error);
+    });
+}
+
+ async function callGemini() {
+            const prompt = document.getElementById('promptInput').value;
+			const question = prompt;
+            const resultDiv = document.getElementById('result');
+			let requestPrompt = "";
+            
+            if (!prompt.trim()) {
+                alert("Vui lòng nhập nội dung!");
+                return;
+            } else {
+				const queChinh = document.getElementById("batquaichinh").innerText.split(" - ");
+				const queHo = document.getElementById("batquaiho").innerText.split(" - ");
+				const queBien = document.getElementById("batquaibien").innerText.split(" - ");
+					
+
+				 requestPrompt = `Lập quẻ Mai Hoa Dịch Số được quẻ Chính ${queChinh[0]} trên ${queChinh[1]} dưới, quẻ Hỗ ${queHo[0]} trên ${queHo[1]} dưới, quẻ Biến ${queBien[0]} trên ${queBien[1]} dưới, Hào Động ${haoDong}. Câu hỏi: ${question}?`;
+				
+				
+			
+			}
+
+            resultDiv.innerText = "Đang xử lý...";
+
+            // Thay API Key của anh Boss vào đây
+            const apiKey = "AQ.Ab8RN6Jl_V88a5GDAjSyUui_71uO1FOMmcn1IWEKrc-NT8iMSQ"; 
+            
+            // Endpoint chuẩn của mô hình gemini-3.8-flash
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${apiKey}`;
+
+            const data = {
+                contents: [{
+                    parts: [{ text: requestPrompt }]
+                }]
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates[0].content.parts[0].text) {
+                    resultDiv.innerText = result.candidates[0].content.parts[0].text;
+                } else {
+                    resultDiv.innerText = "Lỗi phản hồi: " + JSON.stringify(result, null, 2);
+                }
+            } catch (error) {
+                resultDiv.innerText = "Đã xảy ra lỗi kết nối: " + error.message;
+            }
+        }
+
+
+</script>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+
+
+<div id = "duonglich"></div>
+<div id = "amlich"></div>
+<div id = "haodong"></div>
+<table style="
+    style=&quot;
+    /* border: 10px !important; */
+    font-weight: bold;
+    width: 100%;
+&quot;;
+    font: icon;
+    font-size: x-large;
+">
+ <tr>
+    <th>Chính</th>
+    <th>Hỗ</th>
+    <th>Biến</th>
+  </tr>
+  <tr>
+    <td id="6">___</td>
+    <td id="66">_ _</td>
+    <td id="666">_ _</td>
+  </tr>
+  <tr>
+    <td id="5">___</td>
+    <td id="55">___</td>
+    <td id="555">___</td>
+  </tr>
+  <tr>
+    <td id="4">___</td>
+    <td id="44">_ _</td>
+    <td id="444">_ _</td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td></td>
+    <td></td>
+  </tr>
+ <tr>
+    <td id="3">___</td>
+    <td id="33">_ _</td>
+    <td id="333">_ _</td>
+  </tr>
+  <tr>
+    <td id="2">___</td>
+    <td id="22">___</td>
+    <td id="222">___</td>
+  </tr>
+  <tr>
+    <td id="1">___</td>
+    <td id="11">_ _</td>
+    <td id="111">_ _</td>
+  </tr>
+  <tr>
+    <td id="batquaichinh"></td>
+    <td id="batquaiho"></td>
+    <td id="batquaibien"></td>
+  </tr>
+  <tr>
+    <td id="quelychinh"></td>
+    <td id="quelyho"></td>
+    <td id="quelybien"></td>
+  </tr>
+  <tr>
+    <td id="nguhanhchinh"></td>
+    <td id="nguhanhho"></td>
+    <td id="nguhanhbien"></td>
+  </tr>
+  
+  
+</table>
+ <h2>Đặt câu hỏi</h2>
+    <textarea id="promptInput" placeholder="Nhập câu hỏi vào đây..." style="width: 100%;height: 100px;"></textarea>
+    <br>
+    <button onclick="callGemini()">Gửi đi</button>
+
+    <h3>Kết quả:</h3>
+    <div id="result">Đang chờ câu hỏi...</div>
+</body>
+</html>
+
