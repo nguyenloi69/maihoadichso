@@ -453,13 +453,13 @@ async function getNgayAmLich() {
 				const amlich = document.getElementById("amlich").innerText;	
 				let thedung = "";
 				if(haoDong < 4) {
-					thedung = `Thể ${queChinh[1]} Dụng ${queChinh[0]}`;
+					thedung = `Thể là ${queChinh[1]} Dụng là ${queChinh[0]}`;
 				} 
 				if(haoDong > 3) {
-					thedung = `Thể ${queChinh[0]} Dụng ${queChinh[1]}`;
+					thedung = `Thể là ${queChinh[0]} Dụng là ${queChinh[1]}`;
 				}
 
-				 requestPrompt = `${amlich} lập quẻ Mai Hoa được quẻ Chính ${queChinh[0]} trên ${queChinh[1]} dưới (${queLyChinh[0]} ${queLyChinh[1]}) Hào động ${haoDong} nên tính được ra ${thedung} ,tiếp tục tính quẻ Hỗ được ${queHo[0]} trên ${queHo[1]} dưới (${queLyHo[0]} ${queLyHo[1]}),do có Hào Động là ${haoDong} nên ra được quẻ Biến ${queBien[0]} trên ${queBien[1]} dưới (${queLyBien[0]} ${queLyBien[1]}), . Hỏi: ${question}?`;
+				 requestPrompt = `${amlich} lập quẻ Mai Hoa được quẻ Chính ${queChinh[0]} trên ${queChinh[1]} dưới (${queLyChinh[0]} ${queLyChinh[1]}) Hào động ${haoDong} nên tính được ra ${thedung} ,tiếp tục tính quẻ Hỗ được ${queHo[0]} trên ${queHo[1]} dưới (${queLyHo[0]} ${queLyHo[1]}),do có Hào Động là ${haoDong} nên ra được quẻ Biến ${queBien[0]} trên ${queBien[1]} dưới (${queLyBien[0]} ${queLyBien[1]}) . Hỏi rằng ${question}?`;
 				
 				
 			
