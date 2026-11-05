@@ -445,14 +445,26 @@ async function getNgayAmLich() {
 				const queChinh = document.getElementById("batquaichinh").innerText.split(" - ");
 				const queHo = document.getElementById("batquaiho").innerText.split(" - ");
 				const queBien = document.getElementById("batquaibien").innerText.split(" - ");
-					
 
-				 requestPrompt = `Lập quẻ Mai Hoa Dịch Số được quẻ Chính ${queChinh[0]} trên ${queChinh[1]} dưới, quẻ Hỗ ${queHo[0]} trên ${queHo[1]} dưới, quẻ Biến ${queBien[0]} trên ${queBien[1]} dưới, Hào Động ${haoDong}. Câu hỏi: ${question}?`;
+				const queLyChinh = document.getElementById("quelychinh").innerText.split(" - ");
+				const queLyHo = document.getElementById("quelyho").innerText.split(" - ");
+				const queLyBien = document.getElementById("quelybien").innerText.split(" - ");
+				
+				const amlich = document.getElementById("amlich").innerText;	
+				let thedung = "";
+				if(haoDong < 4) {
+					thedung = `Thể ${queChinh[1]} Dụng ${queChinh[0]}`;
+				} 
+				if(haoDong > 3) {
+					thedung = `Thể ${queChinh[0]} Dụng ${queChinh[1]}`;
+				}
+
+				 requestPrompt = `${amlich} lập quẻ Mai Hoa được quẻ Chính ${queChinh[0]} trên ${queChinh[1]} dưới (${queLyChinh[0]} ${queLyChinh[1]}) Hào động ${haoDong} nên tính được ra ${thedung} ,tiếp tục tính quẻ Hỗ được ${queHo[0]} trên ${queHo[1]} dưới (${queLyHo[0]} ${queLyHo[1]}),do có Hào Động là ${haoDong} nên ra được quẻ Biến ${queBien[0]} trên ${queBien[1]} dưới (${queLyBien[0]} ${queLyBien[1]}), . Hỏi: ${question}?`;
 				
 				
 			
 			}
-
+			document.getElementById("fullquestion").innerText = requestPrompt;
             resultDiv.innerText = "Đang xử lý...";
 			const apiKey = localStorage.getItem('MY_GEMINI_API_KEY');
             
@@ -596,6 +608,7 @@ function saveApiKey() {
     <button onclick="callGemini()" style="width: 100%;height: 10%;">Gửi đi</button>
 
     <h3>Kết quả:</h3>
+	<div id="fullquestion"></div>
     <div id="result">Đang chờ câu hỏi...</div>
 </body>
 </html>
